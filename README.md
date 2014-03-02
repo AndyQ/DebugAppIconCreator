@@ -1,11 +1,11 @@
-DebugImageCreator README
+DebugAppIconCreator README
 ========================
 
 by Andy Qua - @AndyQ
 
 OVERVIEW
 --------
-DebugImageCreator is a small command line app designed to add debug information to iOS App Icons.
+DebugAppIconCreator is a small command line app designed to add debug information to iOS App Icons.
 
 This has been designed to work mainly with AssetCatalogs but it shoud work fine with normal App Icons (although you may need some tweaking and I haven't done this yet but the principle is the same).
 
@@ -21,7 +21,7 @@ INSTALLATION
 COMMAND LINE USAGE
 ------------------
 To run from the command line (e.g. to edit a single file use:  
-`DebugImageCreator <source image file> <destination image file> <build number>`
+`DebugAppIconCreator <source image file> <destination image file> <build number>`
 
 By default, the App writes out the following info on a white overlay ontop of the source image:  
 `DEV  
@@ -65,9 +65,9 @@ The script should be similar to the below - you will need to set the value of th
 SOURCE\_SUB\_FOLDER=&lt;subfolder where assets catalog in held under project&gt;  
 VERSION=\`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${SRCROOT}/${INFOPLIST\_FILE}\`
 
-/users/andy/bin/DebugImageCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-120.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-120.png" ${VERSION}  
-/users/andy/bin/DebugImageCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76@2x.png" ${VERSION}  
-/users/andy/bin/DebugImageCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
+/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-120.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-120.png" ${VERSION}  
+/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76@2x.png" ${VERSION}  
+/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
 </code>
 
 This pulls out the short version string from your INFO-PLIST file, then updates the Retina iPhone image (Icon-120) and the retina and non-retina iPad images (Icon-76 and Icon-76@2x).  If you want additional images updated them add them also.

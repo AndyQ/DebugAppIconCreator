@@ -24,10 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A1A98F4718C38A04003B261E /* DebugImageCreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DebugImageCreator; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1A98F4718C38A04003B261E /* DebugAppIconCreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DebugAppIconCreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A98F4A18C38A04003B261E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1A98F4D18C38A04003B261E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A1A98F5018C38A04003B261E /* DebugImageCreator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DebugImageCreator-Prefix.pch"; sourceTree = "<group>"; };
+		A1A98F5018C38A04003B261E /* DebugAppIconCreator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DebugAppIconCreator-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		A1A98F3E18C38A04003B261E = {
 			isa = PBXGroup;
 			children = (
-				A1A98F4C18C38A04003B261E /* DebugImageCreator */,
+				A1A98F4C18C38A04003B261E /* DebugAppIconCreator */,
 				A1A98F4918C38A04003B261E /* Frameworks */,
 				A1A98F4818C38A04003B261E /* Products */,
 			);
@@ -54,7 +54,7 @@
 		A1A98F4818C38A04003B261E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1A98F4718C38A04003B261E /* DebugImageCreator */,
+				A1A98F4718C38A04003B261E /* DebugAppIconCreator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,19 +67,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A1A98F4C18C38A04003B261E /* DebugImageCreator */ = {
+		A1A98F4C18C38A04003B261E /* DebugAppIconCreator */ = {
 			isa = PBXGroup;
 			children = (
 				A1A98F4D18C38A04003B261E /* main.m */,
 				A1A98F4F18C38A04003B261E /* Supporting Files */,
 			);
-			path = DebugImageCreator;
+			path = DebugAppIconCreator;
 			sourceTree = "<group>";
 		};
 		A1A98F4F18C38A04003B261E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A1A98F5018C38A04003B261E /* DebugImageCreator-Prefix.pch */,
+				A1A98F5018C38A04003B261E /* DebugAppIconCreator-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1A98F4618C38A04003B261E /* DebugImageCreator */ = {
+		A1A98F4618C38A04003B261E /* DebugAppIconCreator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1A98F5518C38A04003B261E /* Build configuration list for PBXNativeTarget "DebugImageCreator" */;
+			buildConfigurationList = A1A98F5518C38A04003B261E /* Build configuration list for PBXNativeTarget "DebugAppIconCreator" */;
 			buildPhases = (
 				A1A98F4318C38A04003B261E /* Sources */,
 				A1A98F4418C38A04003B261E /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = DebugImageCreator;
+			name = DebugAppIconCreator;
 			productName = DebugImageCreator;
-			productReference = A1A98F4718C38A04003B261E /* DebugImageCreator */;
+			productReference = A1A98F4718C38A04003B261E /* DebugAppIconCreator */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +113,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Andy Qua";
 			};
-			buildConfigurationList = A1A98F4218C38A04003B261E /* Build configuration list for PBXProject "DebugImageCreator" */;
+			buildConfigurationList = A1A98F4218C38A04003B261E /* Build configuration list for PBXProject "DebugAppIconCreator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -125,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1A98F4618C38A04003B261E /* DebugImageCreator */,
+				A1A98F4618C38A04003B261E /* DebugAppIconCreator */,
 			);
 		};
 /* End PBXProject section */
@@ -222,8 +222,8 @@
 			buildSettings = {
 				DSTROOT = /;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DebugImageCreator/DebugImageCreator-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "DebugAppIconCreator/DebugAppIconCreator-Prefix.pch";
+				PRODUCT_NAME = DebugAppIconCreator;
 			};
 			name = Debug;
 		};
@@ -232,15 +232,15 @@
 			buildSettings = {
 				DSTROOT = /;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DebugImageCreator/DebugImageCreator-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "DebugAppIconCreator/DebugAppIconCreator-Prefix.pch";
+				PRODUCT_NAME = DebugAppIconCreator;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1A98F4218C38A04003B261E /* Build configuration list for PBXProject "DebugImageCreator" */ = {
+		A1A98F4218C38A04003B261E /* Build configuration list for PBXProject "DebugAppIconCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1A98F5318C38A04003B261E /* Debug */,
@@ -249,7 +249,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1A98F5518C38A04003B261E /* Build configuration list for PBXNativeTarget "DebugImageCreator" */ = {
+		A1A98F5518C38A04003B261E /* Build configuration list for PBXNativeTarget "DebugAppIconCreator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1A98F5618C38A04003B261E /* Debug */,
