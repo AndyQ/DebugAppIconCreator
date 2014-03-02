@@ -63,9 +63,9 @@ The script should be similar to the below - you will need to set the value of th
 
 <code>SOURCE\_SUB\_FOLDER=&lt;subfolder where assets catalog is held under project&gt;  
 VERSION=\`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${SRCROOT}/${INFOPLIST\_FILE}\`  
-/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-120.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-120.png" ${VERSION}  
-/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76@2x.png" ${VERSION}  
-/users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
+DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-120.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-120.png" ${VERSION}  
+DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76@2x.png" ${VERSION}  
+DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
 </code>
 
 This pulls out the short version string from your INFO-PLIST file, then updates the Retina iPhone image (Icon-120) and the retina and non-retina iPad images (Icon-76 and Icon-76@2x).  If you want additional images updated them add them also.
