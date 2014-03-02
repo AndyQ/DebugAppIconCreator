@@ -1,6 +1,6 @@
 //
 //  main.m
-//  DebugImageCreator
+//  DebugAppIconCreator
 //
 //  Created by Andy Qua on 02/03/2014.
 //  Copyright (c) 2014 Andy Qua. All rights reserved.
@@ -45,7 +45,7 @@ int main (int argc, const char * argv[])
         
         if ( argc != 4 )
         {
-            NSLog( @"Invalid usage!\n\nUse:\nDebugImageCreator <source> <dest> <buildnr>" );
+            NSLog( @"Invalid usage!\n\nUse:\nDebugAppIconCreator <source> <dest> <buildnr>" );
             exit( 1 );
         }
 
