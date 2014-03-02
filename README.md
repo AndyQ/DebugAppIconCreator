@@ -63,8 +63,7 @@ The script should be similar to the below - you will need to set the value of th
 
 <code>
 SOURCE\_SUB\_FOLDER=&lt;subfolder where assets catalog in held under project&gt;  
-VERSION=\`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${SRCROOT}/${INFOPLIST\_FILE}\`
-
+VERSION=\`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${SRCROOT}/${INFOPLIST\_FILE}\`  
 /users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-120.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-120.png" ${VERSION}  
 /users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76@2x.png" ${VERSION}  
 /users/andy/bin/DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
