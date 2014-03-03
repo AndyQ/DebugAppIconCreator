@@ -59,7 +59,7 @@ So, I'm assuming that you have already got an asset catalog setup and populated 
 Under build Phases for your target (this is why its a good idea to have a seperate target for development builds), add a New Run Script Build Phase.
 Move this to just under the Target Dependencies build phase.
 
-The script should be similar to the below - you will need to set the value of the SOURCE\_SUB\_FOLDER but that should be all.  
+The script should be similar to the below - you will need to set the value of the SOURCE\_SUB\_FOLDER and you may need to check the names of the icons in your AppIcon assets (I don't think these are standardly named)
 
 <code>SOURCE\_SUB\_FOLDER=&lt;subfolder where assets catalog is held under project&gt;  
 VERSION=\`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${SRCROOT}/${INFOPLIST\_FILE}\`  
@@ -68,7 +68,7 @@ DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppI
 DebugAppIconCreator "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon.appiconset/Icon-76.png" "${PROJECT\_DIR}/${SOURCE\_SUB\_FOLDER}/Images.xcassets/AppIcon-Dev.appiconset/Icon-76.png" ${VERSION}
 </code>
 
-This pulls out the short version string from your INFO-PLIST file, then updates the Retina iPhone image (Icon-120) and the retina and non-retina iPad images (Icon-76 and Icon-76@2x).  If you want additional images updated them add them also.
+This pulls out the short version string from your INFO-PLIST file, then updates the Retina iPhone image (Icon-120) and the retina and non-retina iPad images (Icon-76 and Icon-76@2x - as mentioned above, your image names **may** differ!).  If you want additional images updated them add them also.
 
 Then, build your project, once its completed, check the asset catalog and the AppIcon-Dev and with luck, the icons will have been updated with your build bumber on them.
 
