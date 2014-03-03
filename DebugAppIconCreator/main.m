@@ -42,7 +42,6 @@ int main (int argc, const char * argv[])
     @autoreleasepool {
         
         [NSApplication sharedApplication];
-        
         if ( argc != 4 )
         {
             NSLog( @"Invalid usage!\n\nUse:\nDebugAppIconCreator <source> <dest> <buildnr>" );
@@ -50,19 +49,22 @@ int main (int argc, const char * argv[])
         }
 
         // Debug log - write out arguments
-        // NSLog( @"%s %s %s", argv[1], argv[2], argv[3] );
-
+//        NSLog( @"%s %s %s", argv[1], argv[2], argv[3] );
+        
         // Pull out source, destination and build number from args
         NSString *sourceFilename = [NSString stringWithFormat:@"%s", argv[1]];
         NSString *destFilename = [NSString stringWithFormat:@"%s", argv[2]];
         NSString *buildNr = [NSString stringWithFormat:@"%s", argv[3]];
-        
-        // Load up our image
-        NSImage *sourceImage = [[NSImage alloc] initWithContentsOfFile:sourceFilename];
 
-        // Extract out the size of our input image
+        // Load up our image
+        NSData *sourceData = [NSData dataWithContentsOfFile:sourceFilename];
+        NSImage *sourceImage = [[NSImage alloc] initWithData:sourceData];
+
+        // Extract out the size of our input image - Note we use pixelsWide and pixelsHigh for image size
+        // as NSBitmapImageRep.size doesn't return the display size
         NSBitmapImageRep *sourceImageRep = [[sourceImage representations] objectAtIndex:0];
-        NSSize size = sourceImageRep.size;
+        NSSize size = NSMakeSize( sourceImageRep.pixelsWide, sourceImageRep.pixelsHigh );
+//        NSLog( @"Size - %f, %f,", size.width, size.height );
         
         // Create a new destination image with the same size as our source image
         NSImage *image = [[NSImage alloc] initWithSize:size];
@@ -71,7 +73,7 @@ int main (int argc, const char * argv[])
         [image lockFocus];
         
         // Draw the original image first
-        [sourceImage drawInRect:NSMakeRect( 0, 0, size.width, size.height)];
+        [sourceImageRep drawInRect:NSMakeRect( 0, 0, size.width, size.height)];
 
         // Overlay Drawing stuff goes in here
         
@@ -85,9 +87,15 @@ int main (int argc, const char * argv[])
         NSRect textRect = getRectForTextAndFont( text, f, size );
 
         // Draw faded white background
-        [[NSColor colorWithWhite:1 alpha:0.5] set];
-        NSRectFillUsingOperation(NSMakeRect(0, 0, size.width, textRect.size.height ), NSCompositeSourceOver);
-        
+        // Note we drop down into CGxxx methods as we can't use NSColor for alpha
+        // As it doesn't work on headless display
+        NSRect rect = NSMakeRect(0, 0, size.width, textRect.size.height );
+        CGContextRef        context    = [[NSGraphicsContext currentContext]
+                                          graphicsPort];
+        CGContextSetRGBFillColor (context, 1,1,1, .5);
+        CGContextFillRect (context, CGRectMake (0, 0, rect.size.width,
+                                                rect.size.height));
+
         // Draw text
         [text drawAtPoint:NSMakePoint( 5, 0 ) withAttributes:@{NSForegroundColorAttributeName : [NSColor blackColor],
                                                                NSFontAttributeName : f,
@@ -100,7 +108,7 @@ int main (int argc, const char * argv[])
         // Save the new image as a PNG to the destination
         CGImageRef cgRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
         NSBitmapImageRep *newRep = [[NSBitmapImageRep alloc] initWithCGImage:cgRef];
-        [newRep setSize:[image size]];
+        [newRep setSize:size];
         NSData *pngData = [newRep representationUsingType:NSPNGFileType properties:nil];
         [pngData writeToFile:destFilename atomically:YES];
     }
