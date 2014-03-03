@@ -22,7 +22,7 @@ NSFont *getFontForText( NSString *text, NSSize size )
 {
     size.height = CGFLOAT_MAX;
     
-    CGFloat fontSize = 20;
+    CGFloat fontSize = 40;
     while (fontSize > 0.0)
     {
         NSFont *f = [NSFont systemFontOfSize:fontSize];
@@ -42,6 +42,7 @@ int main (int argc, const char * argv[])
     @autoreleasepool {
         
         [NSApplication sharedApplication];
+
         if ( argc != 4 )
         {
             NSLog( @"Invalid usage!\n\nUse:\nDebugAppIconCreator <source> <dest> <buildnr>" );
@@ -49,13 +50,14 @@ int main (int argc, const char * argv[])
         }
 
         // Debug log - write out arguments
-//        NSLog( @"%s %s %s", argv[1], argv[2], argv[3] );
+        NSLog( @"%s %s %s", argv[1], argv[2], argv[3] );
         
         // Pull out source, destination and build number from args
         NSString *sourceFilename = [NSString stringWithFormat:@"%s", argv[1]];
         NSString *destFilename = [NSString stringWithFormat:@"%s", argv[2]];
         NSString *buildNr = [NSString stringWithFormat:@"%s", argv[3]];
 
+        
         // Load up our image
         NSData *sourceData = [NSData dataWithContentsOfFile:sourceFilename];
         NSImage *sourceImage = [[NSImage alloc] initWithData:sourceData];
@@ -65,6 +67,7 @@ int main (int argc, const char * argv[])
         NSBitmapImageRep *sourceImageRep = [[sourceImage representations] objectAtIndex:0];
         NSSize size = NSMakeSize( sourceImageRep.pixelsWide, sourceImageRep.pixelsHigh );
 //        NSLog( @"Size - %f, %f,", size.width, size.height );
+//        NSLog( @"Source Size - %f, %f,", sourceImageRep.size.width, sourceImageRep.size.height );
         
         // Create a new destination image with the same size as our source image
         NSImage *image = [[NSImage alloc] initWithSize:size];
@@ -104,12 +107,30 @@ int main (int argc, const char * argv[])
 
         // Finished drawing now
         [image unlockFocus];
+        
+        // Create New image - of the original size - This is because when we create our NSImage above,
+        // if we are on a retina mac it decides to create a retina image so our saved image is double the size!
+        NSBitmapImageRep *imgRep = [[NSBitmapImageRep alloc]
+                                 initWithBitmapDataPlanes:NULL
+                                 pixelsWide:size.width
+                                 pixelsHigh:size.height
+                                 bitsPerSample:8
+                                 samplesPerPixel:4
+                                 hasAlpha:YES
+                                 isPlanar:NO
+                                 colorSpaceName:NSCalibratedRGBColorSpace
+                                 bytesPerRow:0
+                                 bitsPerPixel:0];
+        [imgRep setSize:NSMakeSize(size.width, size.height)];
+        
+        // draw our updated image into this image
+        [NSGraphicsContext saveGraphicsState];
+        [NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithBitmapImageRep:imgRep]];
+        [image drawInRect:NSMakeRect(0, 0, size.width, size.height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
+        [NSGraphicsContext restoreGraphicsState];
 
-        // Save the new image as a PNG to the destination
-        CGImageRef cgRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
-        NSBitmapImageRep *newRep = [[NSBitmapImageRep alloc] initWithCGImage:cgRef];
-        [newRep setSize:size];
-        NSData *pngData = [newRep representationUsingType:NSPNGFileType properties:nil];
+
+        NSData *pngData = [imgRep representationUsingType:NSPNGFileType properties:nil];
         [pngData writeToFile:destFilename atomically:YES];
     }
     return 0;
